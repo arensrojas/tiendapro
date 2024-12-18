@@ -42,7 +42,7 @@ class Customer(models.Model):
     
     def get_current_order(self):
         print("Creando una nueva orden para el customer: ")
-        nueva_order = Order.objects.filter(customer = self).first()
+        nueva_order = Order.objects.filter(customer = self, status = 'PENDIENTE').first()
         # Si nueva_order No es NOne, lo creamos
         if nueva_order is None:
             nueva_order = Order()
@@ -73,7 +73,7 @@ class OrderDetail(models.Model):
     
     
     def __str__(self):
-        return self.order.id + " " + self.product.name
+        return str(self.order.id) + " " + self.product.name
     
     
     
